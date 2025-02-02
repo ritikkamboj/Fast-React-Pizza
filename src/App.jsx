@@ -7,6 +7,7 @@ import Cart from "./features/cart/Cart";
 import CreateOrder from "./features/order/CreateOrder";
 import Order from "./features/order/Order";
 import AppLayout from "./ui/AppLayout";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
