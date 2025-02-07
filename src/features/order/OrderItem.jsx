@@ -1,15 +1,16 @@
-import { formatCurrency } from "../../utilities/helpers";
+import { formatCurrency } from '../../utilities/helpers';
+import React from 'react';
 
 function OrderItem({ item, isLoadingIngredients, ingredients }) {
   const { quantity, name, totalPrice } = item;
 
   return (
-    <li>
-      <div>
-        <p>
+    <li className="py-3">
+      <div className="flex items-center justify-between text-sm">
+        <p className="font-bold">
           <span>{quantity}&times;</span> {name}
         </p>
-        <p>{formatCurrency(totalPrice)}</p>
+        <p className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
     </li>
   );
