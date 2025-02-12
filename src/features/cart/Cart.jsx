@@ -6,6 +6,7 @@ import Button from '../../ui/Button';
 import { list } from 'postcss';
 import CartItem from './CartItem';
 import { useSelector } from 'react-redux';
+import { getUser } from '../user/userSlice';
 
 const fakeCart = [
   {
@@ -34,7 +35,8 @@ const fakeCart = [
 function Cart() {
   const username = useSelector((state) => state.user.username);
 
-  const cart = fakeCart;
+  // const cart = fakeCart;
+  const cart = useSelector((state) => state.cart.cart);
 
   return (
     <div className="px-4 py-3">

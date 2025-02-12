@@ -51,6 +51,9 @@ const cartSlice = createSlice({
 export const { decreaseItemQuantitie, increaseItemQuantitie, AddToCart, deleteFromCart, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
+
+export const getCart = (state) => state.cart.cart;
+
 export const getCartQuantity = (state) =>
     state.cart.cart.reduce((sum, item) => sum + item.numOfItems, 0);
 
