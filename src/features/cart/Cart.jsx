@@ -41,6 +41,7 @@ function Cart() {
   // const cart = fakeCart;
   // const cart = useSelector((state) => state.cart.cart);
   const cart = useSelector(getCart);
+  console.log(cart);
   const dispatch = useDispatch();
 
   if (cart.length === 0) {

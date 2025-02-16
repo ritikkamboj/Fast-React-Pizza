@@ -4,6 +4,7 @@ import Button from '../../ui/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToCart, getCurrentQuanityById } from '../cart/userCart';
 import DeleteItem from '../cart/DeleteItem';
+import UpdateItemQuantity from '../cart/updateItemQuantity';
 function MenuItem({ pizza }) {
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
@@ -45,7 +46,13 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-          {isInCart && <DeleteItem id={id} />}
+          {isInCart && (
+            <div className="flex gap-3 sm:gap-8">
+              <UpdateItemQuantity id={id} currQuantity={currQuantity} />
+              <DeleteItem id={id} />
+            </div>
+          )}
+
           {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddtoCart}>
               Add to Cart

@@ -19,6 +19,7 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         AddToCart(state, action) {
+            console.log('adding item to cart')
             state.cart.push(action.payload)
         },
         deleteFromCart(state, action) {
@@ -26,17 +27,21 @@ const cartSlice = createSlice({
 
         },
         increaseItemQuantitie(state, action) {
-            const item = state.cart.find((item) => item.id === action.id);
+            const item = state.cart.find((item) => item.id === action.payload);
+            
 
             item.numOfItems++;
             item.totalPrice = item.numOfItems * item.unitPrice
 
 
+
         },
         decreaseItemQuantitie(state, action) {
-            const item = state.cart.find((item) => item.id === action.id);
+            const item = state.cart.find((item) => item.id === action.payload);
 
             item.numOfItems--;
+            if(item.numOfItems === 0 ) cartSlice.caseReducers.deleteFromCart(state,action);
+
             item.totalPrice = item.numOfItems * item.unitPrice
 
 
