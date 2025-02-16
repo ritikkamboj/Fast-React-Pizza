@@ -53,7 +53,7 @@ function Cart() {
       <h2 className="mt-7 text-xl font-semibold">Your cart, {username}</h2>
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item) => (
-          <CartItem item={item} key={item.pizzaId} />
+          <CartItem item={item} key={item.id} />
         ))}
       </ul>
 
@@ -61,7 +61,7 @@ function Cart() {
         <Button to="/order/new" type="primary">
           Order pizzas
         </Button>
-        <Button type="secondary" onClick={() => dispatch(clearCart())}>
+        <Button type="secondary" onClick={() => dispatch(clearCart)}>
           Clear Cart
         </Button>
       </div>

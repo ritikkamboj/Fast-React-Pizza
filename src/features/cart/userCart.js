@@ -60,3 +60,26 @@ export const getCartQuantity = (state) =>
 
 export const getTotalCartPrice = (state) =>
     state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+
+
+
+export const getCurrentQuanityById = (id) => (state) => state.cart.cart.find((item) => item.id === id)?.numOfItems ?? 0;
+
+// export const getCurrentQuantityById = (id) => {
+//     return (state) => {
+//       // Get the list of items from the cart
+//       const items = state.cart.cart;
+      
+//       // Find the item with the matching id
+//       const foundItem = items.find((item) => item.id === id);
+      
+//       // If foundItem exists, return its numOfItems; otherwise, return 0
+//       if (foundItem) {
+//         return foundItem.numOfItems;
+//       } else {
+//         return 0;
+//       }
+//     };
+//   };
+  
