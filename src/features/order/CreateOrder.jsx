@@ -67,7 +67,7 @@ function CreateOrder() {
             <input
               className="input"
               type="text"
-              name="name"
+              name="customer"
               required
               defaultValue={username}
             />
