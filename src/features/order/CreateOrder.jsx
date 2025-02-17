@@ -4,6 +4,8 @@ import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../../services/apiRestaurant';
 import Button from '../../ui/Button';
 import { useSelector } from 'react-redux';
+import { getCart } from '../cart/userCart';
+import EmptyCart from '../cart/EmptyCart';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -46,7 +48,12 @@ function CreateOrder() {
 
   const isSubmitting = navigation.state === 'submitting';
 
-  const cart = fakeCart;
+  // const cart = fakeCart;
+
+  const cart = useSelector(getCart);
+  console.log(cart);
+
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="px-4 py-6">
@@ -60,7 +67,7 @@ function CreateOrder() {
             <input
               className="input"
               type="text"
-              name="address"
+              name="name"
               required
               defaultValue={username}
             />
@@ -116,9 +123,17 @@ export async function action({ request }) {
   console.log(formData);
   const data = Object.fromEntries(formData);
   console.log(data);
+  const cart = JSON.parse(data.cart).map((item) => ({
+    pizzaId: item.id,
+    quantity: item.numOfItems,
+    // Include other fields if required by the API
+    name: item.name,
+    unitPrice: item.unitPrice,
+    totalPrice: item.totalPrice,
+  }));
   const order = {
     ...data,
-    cart: JSON.parse(data.cart),
+    cart,
     priority: data.priority === 'on',
   };
 
