@@ -1,4 +1,7 @@
-/*
+
+import { createSlice } from "@reduxjs/toolkit"
+
+
 import { getAddress } from "../../services/apiGeocoding";
 
 function getPosition() {
@@ -23,9 +26,7 @@ async function fetchAddress() {
   return { position, address };
 }
 
-*/
 
-import { createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
