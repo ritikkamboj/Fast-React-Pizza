@@ -1,8 +1,9 @@
 import { formatCurrency } from '../../utilities/helpers';
 import React from 'react';
 
-function OrderItem({ item, isLoadingIngredients, ingredients }) {
+function OrderItem({ item, isLoadingIngredients, ingredients = [] }) {
   const { quantity, name, totalPrice } = item;
+  console.log(ingredients.join(', '));
 
   return (
     <li className="py-3">
@@ -12,6 +13,9 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
         </p>
         <p className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
+      <p className="">
+        {isLoadingIngredients ? 'Loading...' : ingredients.join(',')}
+      </p>
     </li>
   );
 }
