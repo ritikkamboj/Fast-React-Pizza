@@ -2,9 +2,9 @@ import Button from '../../ui/Button';
 import { formatCurrency } from '../../utilities/helpers';
 import React from 'react';
 import DeleteItem from './DeleteItem';
-import UpdateItemQuantity from './updateItemQuantity';
 import { getCurrentQuanityById } from './userCart';
 import { useSelector } from 'react-redux';
+import UpdateItemQuantity from './updateItemQuantity';
 
 function CartItem({ item }) {
   const { id, name, numOfItems, totalPrice } = item;
