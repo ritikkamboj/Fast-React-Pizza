@@ -4,7 +4,7 @@ import React from 'react';
 import DeleteItem from './DeleteItem';
 import { getCurrentQuanityById } from './userCart';
 import { useSelector } from 'react-redux';
-import UpdateItemQuantity from './updateItemQuantity';
+import UpdateItemQuantity from './UpdateItemQuantity';
 
 function CartItem({ item }) {
   const { id, name, numOfItems, totalPrice } = item;
