@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../user/userSlice';
 import { clearCart, getCart } from './userCart';
 import EmptyCart from './EmptyCart';
+import React from 'react';
 
 // const fakeCart = [
 //   {
