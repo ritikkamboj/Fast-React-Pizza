@@ -1,8 +1,9 @@
 
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 
 import { getAddress } from "../../services/apiGeocoding";
+import { builders } from "prettier/doc.js";
 
 function getPosition() {
   return new Promise(function (resolve, reject) {
@@ -10,8 +11,12 @@ function getPosition() {
   });
 }
 
-async function fetchAddress() {
-  // 1) We get the user's geolocation position
+// async function fetchAddress() {
+
+// }
+
+
+export const fetchAddress = createAsyncThunk('user/fetchAddress', async function () { // 1) We get the user's geolocation position
   const positionObj = await getPosition();
   const position = {
     latitude: positionObj.coords.latitude,
@@ -24,13 +29,16 @@ async function fetchAddress() {
 
   // 3) Then we return an object with the data that we are interested in
   return { position, address };
-}
-
+})
 
 
 
 const initialState = {
-  username: ""
+  username: "",
+  status: 'idle',
+  position: {},
+  address: '',
+  error: '',
 }
 
 const userSlice = createSlice({
@@ -40,7 +48,16 @@ const userSlice = createSlice({
     updateName(state, action) {
       state.username = action.payload;
     }
-  }
+  },
+  extraReducers: (builders) => builders.addCase(fetchAddress.pending, (state, action) => { state.state === 'loading ' }).addCase(fetchAddress.fulfilled, (state, action) => {
+    state.status = "idle";
+    state.position = action.payload.position;
+    state.address = action.payload.address;
+  }).addCase(fetchAddress.rejected, (state, action) => {
+    state.status = "error",
+      state.error = action.error.message;
+
+  })
 })
 
 export const { updateName } = userSlice.actions;
